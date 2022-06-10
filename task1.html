@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <script>
+        
+        function validateform() {
+            var fname = document.myform.fname.value;
+            var alphaExp = /^[a-zA-Z]+$/;
+            var lname = document.myform.lname.value;
+            var email = document.myform.Email.value;
+            var regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.(com|in|uk))+$/g;
+            var password = document.myform.password.value;  
+            var Number = document.myform.number.value;
+            var regPhone = /^\d{10}$/;
+            var conformpass = document.myform.conformpass.value;
+             var checkbox=document.myform.checkbox.value;
+    
+             if (fname) {
+                if (!alphaExp.test(fname)  ) {
+                    alert("plese enter only character not number")
+                    console.log(fname);
+                    return false;
+                }
+            }
+            else {
+                alert("first Name can't be blank");
+                return false;
+            }
+            if (lname) {
+                if (!alphaExp.test(fname) ) {
+                    alert("plese enter only character not number")
+                    return false;
+                }
+            }
+            else {
+                alert("last Name can't be blank");
+                return false;
+            }
+            if (email == null || !regEmail.test(email)) {
+                alert("plese enter valid e-mail address");
+                return false;
+            }
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false;
+            }
+            
+            if (Number==null || !regPhone.test(Number)) {
+                alert("plese valid youe moblie number");
+                return false;
+            }
+            if (conformpass == null || conformpass != password) {
+                alert("password is not same!!!!")
+                return false;
+            }
+            function checkbox(){
+                if(!this.form.checkbox.checked)
+            {
+                alert('You must agree to the terms first.');
+                return false;
+            }
+            }
+            // if(!this.form.checkbox.checked)
+            // {
+            //     alert('You must agree to the terms first.');
+            //     return false;
+            // }
+     
+        }  
+    </script>
+    <form name="myform" method="post" onsubmit="return validateform()">
+        first Name: <input type="text" name="fname"   maxlength="10"><br /><br />
+        Lastname: <input type="text" name="lname"   maxlength="10"><br /> <br />
+        E-mail:<input type="email" name="Email"><br /><br />
+        Password: <input type="password" name="password"><br /><br />
+        Moblie number:<input type="number" name="number"/></br></br>
+        conform password:<input type="password" name="conformpass"></br></br>
+        <input type="checkbox" name="checkbox"  onclick="checkbox()">I agree <br><br>
+        <button>sign in</button>
+
+    </form>
+    
+</body>
+
+</html>
+
+
+
