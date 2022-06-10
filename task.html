@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <script>
+        let error = [];
+        function validateform(e) {
+            var fname = document.myform.fname.value;
+            var alphaExp = /^[a-zA-Z]+$/;
+            var lname = document.myform.lname.value;
+            var email = document.myform.Email.value;
+            var regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.(com|in|uk))+$/g;
+            var password = document.myform.password.value;
+            // var inputBox = document.getElementById("inputBox");
+            // var invalidChars = ["-",  "+", "e",  ];                                                                                     
+            var Number = document.myform.number.value;
+            var regPhone = /^\d{10}$/;
+            var conformpass = document.myform.conformpass.value;
+            var checkBox = document.myform.agree;
+            if (fname) {
+                if (!alphaExp.test(fname)  ) {
+                    alert("plese enter only character not number")
+                    console.log(fname);
+                    error.push(0);
+                    return false;
+                }
+            }
+            else {
+                alert("first Name can't be blank");
+                error.push(0);
+                return false;
+
+            }
+            if (lname) {
+                if (!alphaExp.test(fname) ) {
+                    alert("plese enter only character not number")
+                    error.push(0);
+                    return false;
+
+                }
+            }
+            else {
+                alert("last Name can't be blank");
+                error.push(0);
+                return false;
+
+            }
+            if (email == null || !regEmail.test(email)) {
+                alert("plese enter valid e-mail address");
+                error.push(0);
+
+                return false;
+            }
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                error.push(0);
+
+                return false;
+            }
+            // inputBox.addEventListener("input", function() {
+            //  this.value = this.value.replace(/[e\+\-]/gi, "");
+            //  });
+
+            //    inputBox.addEventListener("keydown", function(e) {
+            //     if (invalidChars.includes(e.key)) {
+            //                  e.preventDefault();
+            //             }
+            //     });
+            
+            if (Number==null||!regPhone.test(Number)) {
+                alert("plese valid youe moblie number");
+                error.push(0);
+
+                return false;
+            }
+            if (conformpass == null || conformpass != password) {
+                alert("password is not same!!!!")
+                error.push(0);
+
+                return false;
+            }
+            if (!checkBox.checked) {
+                alert("check is not checked.");
+                error.push(0);
+
+            }
+            if (error == "submit") {
+                if (error == "") {
+                    document.myform.fname.value = "";
+                    document.myform.lname.value = "";
+                    document.myform.Email.value = "";
+                    document.myform.password.value = "";
+                    document.myform.number.value = "";
+                    document.myform.conformpass.value = "";
+                    document.myform.agree.checked = false;
+                }
+            }
+
+        }
+        function myfunction() {
+            document.getElementById("demo").reset();
+        }
+        function checkAgree() {
+            validateform("no");
+            if (error != "")    
+                document.myform.agree.checked = false;
+        }
+    </script>
+    <form id="demo" name="myform" method="post">
+        first Name: <input type="text" name="fname"  maxlength="10"><br /><br />
+        Lastname: <input type="text" name="lname" maxlength="10"><br /> <br />
+        E-mail:<input type="email" name="Email"><br /><br />
+        Password: <input type="password" name="password"><br /><br />
+        Moblie number:<input type="number"  id="inputBox"  name="number" /></br></br>
+        conform password:<input type="password" name="conformpass"></br></br>
+        <input type="checkbox" name="agree" id="agree" value="agree" onclick="checkAgree();">
+        <label>I agree</label><br><br>
+        <input type="button" onclick="myfunction()" value="reset">
+        <input type="button" value="Submit" onclick="validateform('submit')">
+
+    </form>
+   
+
+</html>
